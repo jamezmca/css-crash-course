@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+
+        }
+        
+        #sky,
+        #water {
+            height: 50vh;
+            position: relative;
+        }
+
+        #sky {
+            background: linear-gradient(to bottom, mediumorchid, lavender);
+        }
+
+        #sky::after {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: white;
+            content: '';
+            filter: blur(2px);
+            z-index: 10;
+        }
+
+        #water {
+            background: linear-gradient(to bottom, aquamarine, skyblue);
+            z-index: 30;
+        }
+
+        #sun {
+            height: 30vmin;
+            width: 30vmin;
+            position: absolute;
+            left: 50%;
+            background: linear-gradient(to bottom, gold, darkorange);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            animation: rise 20s ease-in-out infinite;
+            display: grid;
+            place-items: center;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: 0;
+                box-shadow: 0 0 25px 14px orange;
+            }
+            100% {
+                bottom: 130vh;
+                box-shadow: 0 0 25px 14px white;
+            }
+        }
+
+        .water-sunrise {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: radial-gradient(circle at 50% -30%, hsl(2,100%,65%), transparent);
+            transform: translateX(-25%);
+            mix-blend-mode: color-burn;
+            animation: sunrise 20s ease-in-out infinite;
+        }
+
+        @keyframes sunrise {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .water-circle,
+        .water-circle-1,
+        .water-circle-2,
+        .water-circle-3,
+        .water-circle-4,
+        .water-circle-5,
+        .water-circle-6 {
+            position: absolute;
+            width: 8vmin;
+            height: 5vmin;
+            border-radius: 50%;
+            border: 1.5px solid white;
+            animation: splash 9s infinite;
+            transform: scale(0);
+        }
+
+        .circle-1 {top: 24%; left: 16%}
+        .circle-2 {top: 53%; left: 90%;}
+        .circle-3 {top: 66%; left: 40%;}
+
+        @keyframes splash {
+            0% {}
+            50%,
+            100% {
+                opacity: 0;
+                transform: scale(1);
+            }
+        }
+
+        .water-circle {
+            animation-delay: 1s;
+        }
+        .water-circle-1 {
+            animation-delay: 1.5s;
+        }
+        .water-circle-2 {
+            animation-delay: 2s;
+        }
+
+        .cloud {
+            position: absolute;
+            width: 60vmin;
+            height: 6vmin;
+            background: currentColor;
+            color: hsla(150, 10%, 75%, 0.8);
+            top: 15vmin;
+            left: 20vmin;
+            border-radius: 50%;
+            box-shadow: 30vmin 0.5vmin 0 -1vmin currentColor,
+            -25vmin 0 0 -0.6vmin currentColor;
+            opacity: 0.2;
+            transform: translateX(-150vmin);
+            animation: clouds 120s infinite;
+            animation-delay: -10s;
+            filter: blur(1px);
+        }
+
+        .cloud-1 {
+            left: 60vmin;
+            top: 5vmin;
+            opacity: 0.2;
+            filter: blur(1px);
+            animation-delay: 0;
+            animation-duration: 100s;
+        }
+
+        @keyframes clouds {
+            50% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(150vmin);
+            }
+        }
+
+        .light {
+            position: absolute;
+            height: 0.5vmin;
+            width: 20vmin;
+            background: white;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 1vmin;
+            opacity: 0;
+            border-radius: 25vh;
+            filter: blur(1px);
+            animation: light 20s ease-in-out infinite;
+            animation-delay: 5s;
+            transform: scaleX(0.1) translateX(0);
+        }
+
+        @keyframes light {
+            5% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+            10% {
+                opacity: 0.6;
+                transform: scaleX(1) translateX(5%);
+            }
+            15% {
+                opacity: 0.6;
+                transform: scaleX(1) translateX(-5%);
+            }
+            20% {
+                opacity: 0;
+                transform: scaleX(0.1) translateX(0);
+            }
+        }
+
+        .light-1 {
+            top: 2vmin;
+            animation-delay: 5.5s;
+        }
+        .light-2 {
+            top: 3vmin;
+            animation-delay: 6s;
+            width: 18vmin;
+        }
+        .light-3 {
+            top: 4vmin;
+            animation-delay: 6.5s;
+            width: 18vmin;
+        }
+        .light-4 {
+            top: 5vmin;
+            animation-delay: 7s;
+            width: 16vmin;
+        }
+        .light-5 {
+            top: 6vmin;
+            animation-delay: 7.5s;
+            width: 14vmin;
+        }
+        .light-6 {
+            top: 7vmin;
+            animation-delay: 8s;
+            width: 10vmin;
+        }
+        .light-7 {
+            top: 8vmin;
+            animation-delay: 8.5s;
+            width: 8vmin;
+        }
+
+
+
+        #sun h2 {
+            font-family: sans-serif;
+            color: white;
+            text-shadow: 0 0 4px white;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <div id="sky">
+        <div class="cloud"></div>
+        <div class="cloud cloud-1"></div>
+    </div>
+    <div id="water">
+        <div class="water-sunrise"></div>
+        <div class="water-circle circle-1"></div>
+        <div class="water-circle circle-2"></div>
+        <div class="water-circle circle-3"></div>
+        <div class="water-circle-1 circle-1"></div>
+        <div class="water-circle-2 circle-1"></div>
+        <div class="water-circle-3 circle-2"></div>
+        <div class="water-circle-4 circle-2"></div>
+        <div class="water-circle-5 circle-3"></div>
+        <div class="water-circle-6 circle-3"></div>
+        <div class="light"></div>
+        <div class="light light-1"></div>
+        <div class="light light-2"></div>
+        <div class="light light-3"></div>
+        <div class="light light-4"></div>
+        <div class="light light-5"></div>
+        <div class="light light-6"></div>
+        <div class="light light-7"></div>
+    </div>
+    <div id="sun">
+        <h2>HIRE ME</h2>
+    </div>
+</body>
+
+</html>
